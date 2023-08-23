@@ -13,11 +13,22 @@ export class CreateItemController implements ICreateItemController {
     httpRequest: HttpRequest<CreateItemParams>
   ): Promise<HttpResponse<Item>> {
     try {
+      const requiredFields = ["description", "quantity", "measureUnit"];
+
       if (!httpRequest.body) {
         return {
           statusCode: 400,
-          body: "Please specify a body",
+          body: "Please, specify a body",
         };
+      }
+
+      for (const field of requiredFields) {
+        if (!httpRequest?.body?.[field as keyof CreateItemParams]) {
+          return {
+            statusCode: 400,
+            body: `Field ${field} is required`,
+          };
+        }
       }
 
       const item = await this.createItemRepository.createItem(httpRequest.body);
