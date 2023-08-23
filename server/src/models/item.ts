@@ -1,5 +1,5 @@
 export interface Item {
-  id: number;
+  id: string;
   description: string;
   quantity: number;
   measureUnit: string;
