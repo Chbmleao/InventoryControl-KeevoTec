@@ -5,7 +5,7 @@ import {
 import { MongoClient } from "../../database/mongo";
 import { Item } from "../../models/item";
 
-export class MongoCreateItem implements ICreateItemRepository {
+export class MongoCreateItemRepository implements ICreateItemRepository {
   async createItem(params: CreateItemParams): Promise<Item> {
     const { insertedId } = await MongoClient.db
       .collection("items")
