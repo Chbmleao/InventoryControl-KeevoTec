@@ -5,6 +5,8 @@ import { MongoGetItemsRepository } from "./repositories/get-items/mongo-get-item
 import { MongoClient } from "./database/mongo";
 import { MongoCreateItemRepository } from "./repositories/create-item/mongo-create-item";
 import { CreateItemController } from "./controllers/create-item/create-item";
+import { MongoUpdateItemRepository } from "./repositories/update-item/mongo-update-item";
+import { UpdateItemController } from "./controllers/update-item/update-item";
 
 const main = async () => {
   config();
@@ -33,6 +35,25 @@ const main = async () => {
 
     const { body, statusCode } = await createItemController.handle({
       body: req.body,
+    });
+
+    res.status(statusCode).send(body);
+  });
+
+  app.patch("/items/:id", async (req, res) => {
+    console.log("hello");
+    console.log(req.body);
+    console.log(req.params);
+
+    const mongoUpdateItemRepository = new MongoUpdateItemRepository();
+
+    const updateItemController = new UpdateItemController(
+      mongoUpdateItemRepository
+    );
+
+    const { body, statusCode } = await updateItemController.handle({
+      body: req.body,
+      params: req.params,
     });
 
     res.status(statusCode).send(body);
