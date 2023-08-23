@@ -3,11 +3,15 @@ import { config } from "dotenv";
 import { GetItemsController } from "./controllers/get-items/get-items";
 import { MongoGetItemsRepository } from "./repositories/get-items/mongo-get-items";
 import { MongoClient } from "./database/mongo";
+import { MongoCreateItemRepository } from "./repositories/create-item/mongo-create-item";
+import { CreateItemController } from "./controllers/create-item/create-item";
 
 const main = async () => {
   config();
 
   const app = express();
+
+  app.use(express.json());
 
   await MongoClient.connect();
 
@@ -16,6 +20,20 @@ const main = async () => {
     const getItemsController = new GetItemsController(mongoGetItemsRepository);
 
     const { body, statusCode } = await getItemsController.handle();
+
+    res.send(body).status(statusCode);
+  });
+
+  app.post("/items", async (req, res) => {
+    const mongoCreateItemRepository = new MongoCreateItemRepository();
+
+    const createItemController = new CreateItemController(
+      mongoCreateItemRepository
+    );
+
+    const { body, statusCode } = await createItemController.handle({
+      body: req.body,
+    });
 
     res.send(body).status(statusCode);
   });
