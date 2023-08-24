@@ -1,4 +1,5 @@
 import { Item } from "../../models/item";
+import { badRequest, internalServerError, ok } from "../helpers";
 import { HttpResponse, HttpRequest, IController } from "../protocols";
 import { IUpdateItemRepository, UpdateItemParams } from "./protocols";
 
@@ -7,23 +8,17 @@ export class UpdateItemController implements IController {
 
   async handle(
     httpRequest: HttpRequest<UpdateItemParams>
-  ): Promise<HttpResponse<Item>> {
+  ): Promise<HttpResponse<Item | string>> {
     try {
       const id = httpRequest?.params?.id;
       const body = httpRequest?.body;
 
       if (!id) {
-        return {
-          statusCode: 400,
-          body: "Missing item id",
-        };
+        return badRequest("Missing item id");
       }
 
       if (!body) {
-        return {
-          statusCode: 400,
-          body: "Missing fields",
-        };
+        return badRequest("Missing fields");
       }
 
       const allowedFieldsToUpdate: (keyof UpdateItemParams)[] = [
@@ -37,23 +32,14 @@ export class UpdateItemController implements IController {
       );
 
       if (someFieldIsNotAllowedToUpdate) {
-        return {
-          statusCode: 400,
-          body: "Some received field is not allowed",
-        };
+        return badRequest("Some received field is not allowed");
       }
 
       const item = await this.updateItemRepository.updateItem(id, body);
 
-      return {
-        statusCode: 200,
-        body: item,
-      };
+      return ok<Item>(item);
     } catch (error) {
-      return {
-        statusCode: 500,
-        body: "Something went wrong",
-      };
+      return internalServerError();
     }
   }
 }

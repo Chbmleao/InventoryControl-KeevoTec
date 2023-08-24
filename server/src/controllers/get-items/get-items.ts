@@ -1,22 +1,18 @@
-import { IController } from "../protocols";
+import { HttpResponse, IController } from "../protocols";
 import { IGetItemsRepository } from "./protocols";
+import { Item } from "../../models/item";
+import { internalServerError, ok } from "../helpers";
 
 export class GetItemsController implements IController {
   constructor(private readonly getItemsRepository: IGetItemsRepository) {}
 
-  async handle() {
+  async handle(): Promise<HttpResponse<Item[] | string>> {
     try {
       const items = await this.getItemsRepository.getItems();
 
-      return {
-        statusCode: 200,
-        body: items,
-      };
+      return ok<Item[]>(items);
     } catch (error) {
-      return {
-        statusCode: 500,
-        body: "Something went wrong.",
-      };
+      return internalServerError();
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Item } from "../../models/item";
+import { badRequest, created, internalServerError } from "../helpers";
 import { HttpRequest, HttpResponse, IController } from "../protocols";
 import { CreateItemParams, ICreateItemRepository } from "./protocols";
 
@@ -7,37 +8,25 @@ export class CreateItemController implements IController {
 
   async handle(
     httpRequest: HttpRequest<CreateItemParams>
-  ): Promise<HttpResponse<Item>> {
+  ): Promise<HttpResponse<Item | string>> {
     try {
       const requiredFields = ["description", "quantity", "measureUnit"];
 
       if (!httpRequest.body) {
-        return {
-          statusCode: 400,
-          body: "Please, specify a body",
-        };
+        return badRequest("Please, specify a body");
       }
 
       for (const field of requiredFields) {
         if (!httpRequest?.body?.[field as keyof CreateItemParams]) {
-          return {
-            statusCode: 400,
-            body: `Field ${field} is required`,
-          };
+          return badRequest(`Field ${field} is required`);
         }
       }
 
       const item = await this.createItemRepository.createItem(httpRequest.body);
 
-      return {
-        statusCode: 201,
-        body: item,
-      };
+      return created<Item>(item);
     } catch (error) {
-      return {
-        statusCode: 500,
-        body: "Something went wrong",
-      };
+      return internalServerError();
     }
   }
 }
