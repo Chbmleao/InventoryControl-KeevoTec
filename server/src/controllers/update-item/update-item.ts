@@ -1,12 +1,8 @@
 import { Item } from "../../models/item";
-import { HttpResponse, HttpRequest } from "../protocols";
-import {
-  IUpdateItemController,
-  IUpdateItemRepository,
-  UpdateItemParams,
-} from "./protocols";
+import { HttpResponse, HttpRequest, IController } from "../protocols";
+import { IUpdateItemRepository, UpdateItemParams } from "./protocols";
 
-export class UpdateItemController implements IUpdateItemController {
+export class UpdateItemController implements IController {
   constructor(private readonly updateItemRepository: IUpdateItemRepository) {}
 
   async handle(
@@ -26,7 +22,7 @@ export class UpdateItemController implements IUpdateItemController {
       if (!body) {
         return {
           statusCode: 400,
-          body: "Missing item body",
+          body: "Missing fields",
         };
       }
 

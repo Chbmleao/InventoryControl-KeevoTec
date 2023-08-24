@@ -1,12 +1,8 @@
 import { Item } from "../../models/item";
-import { HttpRequest, HttpResponse } from "../protocols";
-import {
-  CreateItemParams,
-  ICreateItemController,
-  ICreateItemRepository,
-} from "./protocols";
+import { HttpRequest, HttpResponse, IController } from "../protocols";
+import { CreateItemParams, ICreateItemRepository } from "./protocols";
 
-export class CreateItemController implements ICreateItemController {
+export class CreateItemController implements IController {
   constructor(private readonly createItemRepository: ICreateItemRepository) {}
 
   async handle(

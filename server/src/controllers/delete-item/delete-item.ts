@@ -1,9 +1,8 @@
 import { Item } from "../../models/item";
 import { IDeleteItemRepository } from "./protocols";
-import { HttpRequest, HttpResponse } from "../protocols";
-import { IDeleteItemController } from "./protocols";
+import { HttpRequest, HttpResponse, IController } from "../protocols";
 
-export class DeleteItemController implements IDeleteItemController {
+export class DeleteItemController implements IController {
   constructor(private readonly deleteItemRepository: IDeleteItemRepository) {}
 
   async handle(httpRequest: HttpRequest<Item>): Promise<HttpResponse<Item>> {
