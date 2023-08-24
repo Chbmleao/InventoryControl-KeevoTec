@@ -7,6 +7,8 @@ import { MongoCreateItemRepository } from "./repositories/create-item/mongo-crea
 import { CreateItemController } from "./controllers/create-item/create-item";
 import { MongoUpdateItemRepository } from "./repositories/update-item/mongo-update-item";
 import { UpdateItemController } from "./controllers/update-item/update-item";
+import { MongoDeleteItemRepository } from "./repositories/delete-item/mongo-delete-user";
+import { DeleteItemController } from "./controllers/delete-item/delete-item";
 
 const main = async () => {
   config();
@@ -41,10 +43,6 @@ const main = async () => {
   });
 
   app.patch("/items/:id", async (req, res) => {
-    console.log("hello");
-    console.log(req.body);
-    console.log(req.params);
-
     const mongoUpdateItemRepository = new MongoUpdateItemRepository();
 
     const updateItemController = new UpdateItemController(
@@ -53,6 +51,20 @@ const main = async () => {
 
     const { body, statusCode } = await updateItemController.handle({
       body: req.body,
+      params: req.params,
+    });
+
+    res.status(statusCode).send(body);
+  });
+
+  app.delete("/items/:id", async (req, res) => {
+    const mongoDeleteItemRepository = new MongoDeleteItemRepository();
+
+    const deleteItemController = new DeleteItemController(
+      mongoDeleteItemRepository
+    );
+
+    const { body, statusCode } = await deleteItemController.handle({
       params: req.params,
     });
 
