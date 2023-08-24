@@ -2,11 +2,12 @@ import { ObjectId } from "mongodb";
 import { IDeleteItemRepository } from "../../controllers/delete-item/protocols";
 import { MongoClient } from "../../database/mongo";
 import { Item } from "../../models/item";
+import { MongoItem } from "../mongo-protocols";
 
 export class MongoDeleteItemRepository implements IDeleteItemRepository {
   async deleteItem(id: string): Promise<Item> {
     const item = await MongoClient.db
-      .collection<Omit<Item, "id">>("items")
+      .collection<MongoItem>("items")
       .findOne({ _id: new ObjectId(id) });
 
     if (!item) {

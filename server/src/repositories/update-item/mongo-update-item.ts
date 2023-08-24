@@ -5,6 +5,7 @@ import {
 } from "../../controllers/update-item/protocols";
 import { MongoClient } from "../../database/mongo";
 import { Item } from "../../models/item";
+import { MongoItem } from "../mongo-protocols";
 
 export class MongoUpdateItemRepository implements IUpdateItemRepository {
   async updateItem(id: string, params: UpdateItemParams): Promise<Item> {
@@ -18,7 +19,7 @@ export class MongoUpdateItemRepository implements IUpdateItemRepository {
     );
 
     const item = await MongoClient.db
-      .collection<Omit<Item, "id">>("items")
+      .collection<MongoItem>("items")
       .findOne({ _id: new ObjectId(id) });
 
     if (!item) {

@@ -4,6 +4,7 @@ import {
 } from "../../controllers/create-item/protocols";
 import { MongoClient } from "../../database/mongo";
 import { Item } from "../../models/item";
+import { MongoItem } from "../mongo-protocols";
 
 export class MongoCreateItemRepository implements ICreateItemRepository {
   async createItem(params: CreateItemParams): Promise<Item> {
@@ -12,7 +13,7 @@ export class MongoCreateItemRepository implements ICreateItemRepository {
       .insertOne(params);
 
     const item = await MongoClient.db
-      .collection<Omit<Item, "id">>("items")
+      .collection<MongoItem>("items")
       .findOne({ _id: insertedId });
 
     if (!item) {
