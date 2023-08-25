@@ -8,7 +8,7 @@ import { Item } from '.';
   providedIn: 'root',
 })
 export class ItemHttpService {
-  private apiUrl = 'https://localhost:8000/items';
+  private apiUrl = 'http://localhost:8000/items';
 
   constructor(private http: HttpClient) {}
 
