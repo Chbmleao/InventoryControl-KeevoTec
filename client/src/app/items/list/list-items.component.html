@@ -1,3 +1,24 @@
-<ul>
-  <li *ngFor="let item of items$ | async">{{ item.description }}</li>
-</ul>
+<div class="list-page">
+  <div class="table">
+    <div *ngFor="let item of items$ | async" class="content-bar">
+      <div class="item-id">
+        {{ item.id }}
+      </div>
+      <div class="item-description">
+        {{ item.description }}
+      </div>
+      <div class="item-quantity">
+        {{ item.quantity }}
+      </div>
+      <div class="item-measure-unit">
+        {{ item.measureUnit }}
+      </div>
+      <div class="btn-container">
+        <button class="item-btn"><fa-icon [icon]="faTrash"></fa-icon></button>
+        <button class="item-btn">
+          <fa-icon [icon]="faPenToSquare"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
