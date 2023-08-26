@@ -1,1 +1,86 @@
-<p>insert-item works!</p>
+<div class="insert-page">
+  <h1>Cadastrar novo item</h1>
+
+  <div class="form-container">
+    <form #formItem="ngForm">
+      <div class="form-group">
+        <div class="input-group">
+          <label for="description">Descrição:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            name="description"
+            [(ngModel)]="item.description"
+            #description="ngModel"
+            minlength="5"
+            required
+          />
+          <div
+            *ngIf="
+              description.errors && (description.dirty || description.touched)
+            "
+            class="alert"
+          >
+            <div [hidden]="!description.errors.required">
+              Digite a descrição.
+            </div>
+            <div [hidden]="!description.errors.minlength">
+              A descrição deve conter ao menos 5 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="quantity">Quantidade:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            [(ngModel)]="item.quantity"
+            #quantity="ngModel"
+            minlength="5"
+            required
+          />
+          <div
+            *ngIf="quantity.errors && (quantity.dirty || quantity.touched)"
+            class="alert"
+          >
+            <div [hidden]="!quantity.errors.required">Digite a quantidade.</div>
+            <div [hidden]="!quantity.errors.minlength">
+              A quantidade deve conter ao menos 5 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="measureUnit">Unidade de medida:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="measureUnit"
+            name="measureUnit"
+            [(ngModel)]="item.measureUnit"
+            #measureUnit="ngModel"
+            minlength="5"
+            required
+          />
+          <div
+            *ngIf="
+              measureUnit.errors && (measureUnit.dirty || measureUnit.touched)
+            "
+            class="alert"
+          >
+            <div [hidden]="!measureUnit.errors.required">
+              Digite a unidade de medida.
+            </div>
+            <div [hidden]="!measureUnit.errors.minlength">
+              A unidade de medida deve conter ao menos 5 caracteres.
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
