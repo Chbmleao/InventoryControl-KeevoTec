@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ItemService, ItemHttpService } from './shared';
 import { ListItemsComponent } from './list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { InsertItemComponent } from './insert-item/insert-item.component';
+import { InsertItemComponent } from './insert';
 
 @NgModule({
   declarations: [ListItemsComponent, InsertItemComponent],

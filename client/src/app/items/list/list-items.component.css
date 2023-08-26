@@ -1,6 +1,7 @@
 .list-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -62,4 +63,5 @@
   margin-top: 7px;
   border-radius: 12px;
   border: none;
+  cursor: pointer;
 }

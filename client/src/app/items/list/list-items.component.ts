@@ -25,4 +25,20 @@ export class ListItemsComponent implements OnInit {
   getAll(): Observable<Item[]> {
     return this.itemService.getAllItems();
   }
+
+  remove($event: any, item: Item): void {
+    $event.preventDefault();
+
+    if (confirm('Do you want to remove "' + item.description + '" item?')) {
+      this.itemService.delete(item.id).subscribe(
+        () => {
+          console.log('Item deleted successfully');
+          this.items$ = this.getAll();
+        },
+        (error) => {
+          console.error('Error deleting item:', error);
+        }
+      );
+    }
+  }
 }
