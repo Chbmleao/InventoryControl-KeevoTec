@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "command": "docker-compose up -d",
+      "name": "Database",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/server"
+    },
+    {
+      "command": "yarn start:dev",
+      "name": "Backend",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/server"
+    },
+    {
+      "command": "ng serve",
+      "name": "Frontend",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/client"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "DevEnvironment",
+      "configurations": ["Database", "Backend", "Frontend"]
+    }
+  ]
+}
