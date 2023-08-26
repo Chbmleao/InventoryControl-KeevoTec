@@ -13,6 +13,27 @@ export class ItemHttpService {
   constructor(private http: HttpClient) {}
 
   getAllItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(`${this.apiUrl}`);
+    return this.http.get<Item[]>(this.apiUrl);
+  }
+
+  post(item: Item): Observable<Item> {
+    return this.http.post<Item>(this.apiUrl, item);
+  }
+
+  patch(item: Item): Observable<Item> {
+    const url = `${this.apiUrl}/${item.id}`;
+
+    const patchData = {
+      description: item.description,
+      quantity: item.quantity,
+      measureUnit: item.measureUnit,
+    };
+
+    return this.http.patch<Item>(url, patchData);
+  }
+
+  delete(id: string): Observable<Item> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<Item>(url);
   }
 }
