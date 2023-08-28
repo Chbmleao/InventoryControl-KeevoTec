@@ -20,14 +20,19 @@
         <button class="item-btn" (click)="remove($event, item)">
           <fa-icon [icon]="faTrash"></fa-icon>
         </button>
-        <button class="item-btn">
+        <button class="item-btn" (click)="openEditItemPage(item.id)">
           <fa-icon [icon]="faPenToSquare"></fa-icon>
         </button>
       </div>
     </div>
   </div>
   <app-insert-item
-    (closePageEvent)="closeItemPage()"
     *ngIf="showInsertItemPage"
+    (closePageEvent)="closeItemPages()"
   ></app-insert-item>
+  <app-edit-item
+    *ngIf="showEditItemPage"
+    (closePageEvent)="closeItemPages()"
+    [editItemId]="editItemId"
+  ></app-edit-item>
 </div>

@@ -14,7 +14,9 @@ export class ListItemsComponent implements OnInit {
   faPenToSquare = faPenToSquare;
   faTrash = faTrash;
 
-  private _showInsertItemPage = false;
+  showInsertItemPage = false;
+  showEditItemPage = false;
+  editItemId = '';
 
   items$: Observable<Item[]>;
 
@@ -28,18 +30,16 @@ export class ListItemsComponent implements OnInit {
     return this.itemService.getAllItems();
   }
 
-  set showInsertItemPage(bool: boolean) {
-    this._showInsertItemPage = bool;
-  }
-
-  get showInsertItemPage() {
-    return this._showInsertItemPage;
-  }
-
-  closeItemPage(): void {
+  closeItemPages(): void {
     this.showInsertItemPage = false;
+    this.showEditItemPage = false;
 
     this.items$ = this.getAll();
+  }
+
+  openEditItemPage(itemId: string) {
+    this.showEditItemPage = true;
+    this.editItemId = itemId;
   }
 
   remove($event: any, item: Item): void {
