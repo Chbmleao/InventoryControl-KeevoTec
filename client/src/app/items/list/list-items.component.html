@@ -1,4 +1,7 @@
 <div class="list-page">
+  <a class="btn" (click)="this.showInsertItemPage = true">
+    <span class="" aria-hidden="true"></span> Novo
+  </a>
   <div class="table">
     <div *ngFor="let item of items$ | async" class="content-bar">
       <div class="item-id">
@@ -23,5 +26,8 @@
       </div>
     </div>
   </div>
-  <app-insert-item></app-insert-item>
+  <app-insert-item
+    (closePageEvent)="closeItemPage()"
+    *ngIf="showInsertItemPage"
+  ></app-insert-item>
 </div>

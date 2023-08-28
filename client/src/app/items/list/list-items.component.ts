@@ -14,6 +14,8 @@ export class ListItemsComponent implements OnInit {
   faPenToSquare = faPenToSquare;
   faTrash = faTrash;
 
+  private _showInsertItemPage = false;
+
   items$: Observable<Item[]>;
 
   constructor(private itemService: ItemService) {}
@@ -24,6 +26,20 @@ export class ListItemsComponent implements OnInit {
 
   getAll(): Observable<Item[]> {
     return this.itemService.getAllItems();
+  }
+
+  set showInsertItemPage(bool: boolean) {
+    this._showInsertItemPage = bool;
+  }
+
+  get showInsertItemPage() {
+    return this._showInsertItemPage;
+  }
+
+  closeItemPage(): void {
+    this.showInsertItemPage = false;
+
+    this.items$ = this.getAll();
   }
 
   remove($event: any, item: Item): void {

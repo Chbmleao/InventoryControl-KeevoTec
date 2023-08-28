@@ -7,6 +7,14 @@
   padding: 0;
 }
 
+.btn {
+  cursor: pointer;
+  border: black 1px solid;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 1em;
+}
+
 .table {
   width: 80%;
 }
@@ -20,7 +28,7 @@
   border-radius: 12px;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 0fr 1fr 1fr 1fr 0fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0fr;
 }
 
 .item-id {
