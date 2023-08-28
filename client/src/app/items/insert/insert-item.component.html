@@ -1,11 +1,14 @@
 <div class="insert-page">
-  <h1>Cadastrar novo item</h1>
+  <div class="title-container">
+    <img src="../../../assets/keevo-purple-icon.png" />
+    <h1>Cadastrar Item</h1>
+  </div>
 
   <div class="form-container">
     <form #formItem="ngForm">
       <div class="form-group">
         <div class="input-group">
-          <label for="description">Descrição:</label>
+          <label for="description">Descrição</label>
           <input
             type="text"
             class="form-control"
@@ -32,15 +35,15 @@
         </div>
 
         <div class="input-group">
-          <label for="quantity">Quantidade:</label>
+          <label for="quantity">Quantidade</label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="quantity"
             name="quantity"
             [(ngModel)]="item.quantity"
             #quantity="ngModel"
-            minlength="5"
+            min="1"
             required
           />
           <div
@@ -48,14 +51,14 @@
             class="alert"
           >
             <div [hidden]="!quantity.errors.required">Digite a quantidade.</div>
-            <div [hidden]="!quantity.errors.minlength">
-              A quantidade deve conter ao menos 5 caracteres.
+            <div [hidden]="!quantity.errors.min">
+              A quantidade deve ser pelo menos 1.
             </div>
           </div>
         </div>
 
         <div class="input-group">
-          <label for="measureUnit">Unidade de medida:</label>
+          <label for="measureUnit">Unidade de medida</label>
           <input
             type="text"
             class="form-control"
@@ -63,7 +66,6 @@
             name="measureUnit"
             [(ngModel)]="item.measureUnit"
             #measureUnit="ngModel"
-            minlength="5"
             required
           />
           <div
@@ -75,10 +77,19 @@
             <div [hidden]="!measureUnit.errors.required">
               Digite a unidade de medida.
             </div>
-            <div [hidden]="!measureUnit.errors.minlength">
-              A unidade de medida deve conter ao menos 5 caracteres.
-            </div>
           </div>
+        </div>
+
+        <div class="form-buttons">
+          <a class="btn btn-default" (click)="closePage()"> Cancelar </a>
+
+          <input
+            type="submit"
+            class="btn btn-success"
+            (click)="insert()"
+            value="Cadastrar"
+            [disabled]="!formItem.form.valid"
+          />
         </div>
       </div>
     </form>

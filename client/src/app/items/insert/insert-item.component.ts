@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ItemService, Item } from '../shared';
@@ -9,6 +15,8 @@ import { ItemService, Item } from '../shared';
   styleUrls: ['./insert-item.component.css'],
 })
 export class InsertItemComponent implements OnInit {
+  @Output() closePageEvent: EventEmitter<void> = new EventEmitter<void>();
+
   @ViewChild('formItem', { static: true }) formItem: NgForm;
   item: Item;
 
@@ -20,7 +28,19 @@ export class InsertItemComponent implements OnInit {
 
   insert(): void {
     if (this.formItem.form.valid) {
-      this.itemService.insert(this.item);
+      this.itemService.insert(this.item).subscribe(
+        () => {
+          console.log('Item inserted successfully');
+          this.closePage();
+        },
+        (error) => {
+          console.error('Error deleting item:', error);
+        }
+      );
     }
+  }
+
+  closePage(): void {
+    this.closePageEvent.emit();
   }
 }
