@@ -1,0 +1,85 @@
+.edit-page {
+  width: 30vw;
+  border: #ccc solid 2px;
+  border-radius: 20px;
+  padding: 2rem 2rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.edit-page h1 {
+  color: #ff5a5a;
+}
+
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: #ccc solid 2px;
+}
+
+.title-container img {
+  width: 5.5rem;
+  height: auto;
+  margin-right: 2rem;
+  box-shadow: 1px 1px 5px black;
+}
+
+.form-group {
+  margin-top: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-top: 1.5rem;
+}
+
+.input-group input {
+  margin-top: 0.5rem;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-group .alert {
+  color: #ff5a5a;
+}
+
+.form-buttons {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn {
+  cursor: pointer;
+  border: black 1px solid;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 1em;
+}
+
+.btn-success {
+  border: 0;
+  color: white;
+  cursor: pointer;
+  background-color: rgba(10, 226, 253, 1);
+}
+
+.btn-success:disabled {
+  background-color: rgba(10, 226, 253, 0.6);
+  cursor: not-allowed;
+  color: #ccc;
+}
