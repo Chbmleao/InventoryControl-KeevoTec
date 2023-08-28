@@ -1,9 +1,11 @@
 import express from "express";
 import cors from "cors";
 import { config } from "dotenv";
+import { MongoClient } from "./database/mongo";
 import { GetItemsController } from "./controllers/get-items/get-items";
 import { MongoGetItemsRepository } from "./repositories/get-items/mongo-get-items";
-import { MongoClient } from "./database/mongo";
+import { GetItemByIdController } from "./controllers/get-item-id/get-item-id";
+import { MongoGetItemByIdRepository } from "./repositories/get-item-id/mongo-get-item-id";
 import { MongoCreateItemRepository } from "./repositories/create-item/mongo-create-item";
 import { CreateItemController } from "./controllers/create-item/create-item";
 import { MongoUpdateItemRepository } from "./repositories/update-item/mongo-update-item";
@@ -27,6 +29,19 @@ const main = async () => {
     const getItemsController = new GetItemsController(mongoGetItemsRepository);
 
     const { body, statusCode } = await getItemsController.handle();
+
+    res.status(statusCode).send(body);
+  });
+
+  app.get("/items/:id", async (req, res) => {
+    const mongoGetItemByIdRepository = new MongoGetItemByIdRepository();
+    const getItemByIdController = new GetItemByIdController(
+      mongoGetItemByIdRepository
+    );
+
+    const { body, statusCode } = await getItemByIdController.handle({
+      params: req.params,
+    });
 
     res.status(statusCode).send(body);
   });
