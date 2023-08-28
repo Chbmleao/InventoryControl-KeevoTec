@@ -34,7 +34,7 @@ export class InsertItemComponent implements OnInit {
           this.closePage();
         },
         (error) => {
-          console.error('Error deleting item:', error);
+          console.error('Error inserting item:', error);
         }
       );
     }
