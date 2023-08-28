@@ -16,6 +16,11 @@ export class ItemHttpService {
     return this.http.get<Item[]>(this.apiUrl);
   }
 
+  getItemById(id: string): Observable<Item> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Item>(url);
+  }
+
   post(item: Item): Observable<Item> {
     return this.http.post<Item>(this.apiUrl, item);
   }

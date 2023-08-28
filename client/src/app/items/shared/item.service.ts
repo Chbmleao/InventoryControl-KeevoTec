@@ -14,6 +14,10 @@ export class ItemService {
     return this.itemHttpService.getAllItems();
   }
 
+  getItemById(id: string): Observable<Item> {
+    return this.itemHttpService.getItemById(id);
+  }
+
   insert(item: Item): Observable<Item> {
     return this.itemHttpService.post(item);
   }
