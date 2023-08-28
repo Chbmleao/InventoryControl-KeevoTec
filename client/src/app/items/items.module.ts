@@ -6,9 +6,10 @@ import { ItemService, ItemHttpService } from './shared';
 import { ListItemsComponent } from './list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InsertItemComponent } from './insert';
+import { EditItemComponent } from './edit';
 
 @NgModule({
-  declarations: [ListItemsComponent, InsertItemComponent],
+  declarations: [ListItemsComponent, InsertItemComponent, EditItemComponent],
   imports: [CommonModule, FontAwesomeModule, FormsModule],
   providers: [ItemService, ItemHttpService],
 })
