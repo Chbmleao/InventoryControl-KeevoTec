@@ -1,38 +1,46 @@
 <div class="list-page">
-  <a class="btn" (click)="this.showInsertItemPage = true">
-    <span class="" aria-hidden="true"></span> Novo
-  </a>
-  <div class="table">
-    <div *ngFor="let item of items$ | async" class="content-bar">
-      <div class="item-id">
-        {{ item.id }}
+  <div class="content">
+    <div class="table">
+      <div class="table-header">
+        <div>
+          <h2>Estoque</h2>
+          <h3>Veja e administre seu estoque</h3>
+        </div>
+        <div>
+          <a class="btn" (click)="this.showInsertItemPage = true"> Novo </a>
+        </div>
       </div>
-      <div class="item-description">
-        {{ item.description }}
-      </div>
-      <div class="item-quantity">
-        {{ item.quantity }}
-      </div>
-      <div class="item-measure-unit">
-        {{ item.measureUnit }}
-      </div>
-      <div class="btn-container">
-        <button class="item-btn" (click)="remove($event, item)">
-          <fa-icon [icon]="faTrash"></fa-icon>
-        </button>
-        <button class="item-btn" (click)="openEditItemPage(item.id)">
-          <fa-icon [icon]="faPenToSquare"></fa-icon>
-        </button>
+      <div *ngFor="let item of items$ | async" class="content-bar">
+        <div class="item-id">
+          {{ item.id }}
+        </div>
+        <div class="item-description">
+          {{ item.description }}
+        </div>
+        <div class="item-quantity">
+          {{ item.quantity }}
+        </div>
+        <div class="item-measure-unit">
+          {{ item.measureUnit }}
+        </div>
+        <div class="btn-container">
+          <button class="item-btn left" (click)="openEditItemPage(item.id)">
+            <fa-icon [icon]="faPenToSquare"></fa-icon>
+          </button>
+          <button class="item-btn right" (click)="remove($event, item)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </div>
       </div>
     </div>
+    <app-insert-item
+      *ngIf="showInsertItemPage"
+      (closePageEvent)="closeItemPages()"
+    ></app-insert-item>
+    <app-edit-item
+      *ngIf="showEditItemPage"
+      (closePageEvent)="closeItemPages()"
+      [editItemId]="editItemId"
+    ></app-edit-item>
   </div>
-  <app-insert-item
-    *ngIf="showInsertItemPage"
-    (closePageEvent)="closeItemPages()"
-  ></app-insert-item>
-  <app-edit-item
-    *ngIf="showEditItemPage"
-    (closePageEvent)="closeItemPages()"
-    [editItemId]="editItemId"
-  ></app-edit-item>
 </div>

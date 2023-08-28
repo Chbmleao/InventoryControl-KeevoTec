@@ -1,0 +1,16 @@
+.container-fluid {
+  background-color: #30044c;
+  min-height: 100vh;
+}
+
+.navbar-header {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, black, purple);
+  padding: 0 2rem;
+  height: 3.3em;
+}
+
+.navbar-header img {
+  height: 2em;
+}
