@@ -43,7 +43,7 @@
             name="quantity"
             [(ngModel)]="item.quantity"
             #quantity="ngModel"
-            min="1"
+            min="0"
             required
           />
           <div
@@ -52,7 +52,7 @@
           >
             <div [hidden]="!quantity.errors.required">Digite a quantidade.</div>
             <div [hidden]="!quantity.errors.min">
-              A quantidade deve ser pelo menos 1.
+              A quantidade deve ser maior ou igual a 0.
             </div>
           </div>
         </div>
