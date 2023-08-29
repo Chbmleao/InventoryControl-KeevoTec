@@ -15,7 +15,7 @@ export class ListItemsComponent implements OnInit {
   faPenToSquare = faPenToSquare;
   faTrash = faTrash;
 
-  showInsertItemPage = false;
+  showInsertItemPage = true;
   showEditItemPage = false;
   editItemId = '';
 

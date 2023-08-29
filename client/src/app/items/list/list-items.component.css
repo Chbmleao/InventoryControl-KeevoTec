@@ -61,6 +61,10 @@
   cursor: pointer;
 }
 
+.item-id:hover {
+  color: purple;
+}
+
 .item-description {
   color: black;
 }
@@ -81,8 +85,19 @@
   border-radius: 12px;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .item-btn.left {
   margin-right: 1rem;
+}
+
+.item-btn.left:hover {
+  color: rgba(10, 226, 253, 1);
+  background-color: black;
+}
+
+.item-btn.right:hover {
+  color: #ff5a5a;
+  background-color: black;
 }

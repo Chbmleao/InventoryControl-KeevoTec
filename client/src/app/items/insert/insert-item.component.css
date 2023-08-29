@@ -1,6 +1,5 @@
 .insert-page {
   width: 30vw;
-  border: #ccc solid 2px;
   border-radius: 20px;
   padding: 2rem 2rem;
   position: fixed;
@@ -21,7 +20,7 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 2rem;
-  border-bottom: #ccc solid 2px;
+  border-bottom: #ccc solid 1px;
 }
 
 .title-container img {
@@ -48,7 +47,9 @@
   margin-top: 0.5rem;
   padding: 10px 20px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 10px;
+  font-size: 1rem;
   box-sizing: border-box;
 }
 
@@ -57,29 +58,43 @@
 }
 
 .form-buttons {
+  width: 100%;
   margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .btn {
   cursor: pointer;
+  width: 100%;
   border: black 1px solid;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  font-size: 1em;
+  border-radius: 10px;
+  font-size: 1.3em;
+  padding: 0.7rem 0;
+  margin: 0;
+  transition: all 0.5s ease;
+}
+
+.btn:hover {
+  color: white;
+  background-color: black;
 }
 
 .btn-success {
   border: 0;
-  color: white;
-  cursor: pointer;
+  color: black;
   background-color: rgba(10, 226, 253, 1);
 }
 
+.btn-success:hover {
+  color: rgba(10, 226, 253, 1);
+  background-color: black;
+}
+
 .btn-success:disabled {
-  background-color: rgba(10, 226, 253, 0.6);
   cursor: not-allowed;
-  color: #ccc;
+  background-color: #cccccc;
+  color: #666666;
 }
