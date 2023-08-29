@@ -17,8 +17,17 @@
         </div>
       </div>
       <div *ngFor="let item of items$ | async" class="content-bar">
-        <div class="item-id" (click)="copyToClipboard(item.id)">
-          {{ item.id }}
+        <div class="item-id-container">
+          <div
+            class="copied-notification"
+            [ngClass]="{ visible: copiedItemId === item.id }"
+          >
+            Copiado!
+          </div>
+
+          <div class="item-id" (click)="copyToClipboard(item.id)">
+            {{ item.id }}
+          </div>
         </div>
         <div class="item-description">
           {{ item.description }}

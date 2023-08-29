@@ -54,6 +54,28 @@
   font-weight: 600;
 }
 
+.item-id-container {
+  position: relative;
+}
+
+.copied-notification {
+  position: absolute;
+  top: -100%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  background-color: purple;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.copied-notification.visible {
+  opacity: 1;
+}
+
 .item-id {
   color: gray;
   font-weight: 300;

@@ -18,6 +18,7 @@ export class ListItemsComponent implements OnInit {
   showInsertItemPage = false;
   showEditItemPage = false;
   editItemId = '';
+  copiedItemId: string | null = null;
 
   items$: Observable<Item[]>;
 
@@ -61,5 +62,10 @@ export class ListItemsComponent implements OnInit {
 
   copyToClipboard(text: string) {
     this.clipboard.copy(text);
+
+    this.copiedItemId = text;
+    setTimeout(() => {
+      this.copiedItemId = null;
+    }, 3000);
   }
 }
