@@ -4,3 +4,13 @@
   font-family: "Libre Franklin", sans-serif;
   font-family: "Outfit", sans-serif;
 }
+
+.btn {
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  border: #30044c 1px solid;
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  display: inline-block;
+}
