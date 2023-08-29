@@ -6,12 +6,18 @@
           <h2>Estoque</h2>
           <h3>Veja e administre seu estoque</h3>
         </div>
-        <div>
+      </div>
+      <div class="content-bar content-legend">
+        <div>Identificador</div>
+        <div>Descrição</div>
+        <div>Quantidade</div>
+        <div>Unidade de medida</div>
+        <div class="end">
           <a class="btn" (click)="this.showInsertItemPage = true"> Novo </a>
         </div>
       </div>
       <div *ngFor="let item of items$ | async" class="content-bar">
-        <div class="item-id">
+        <div class="item-id" (click)="copyToClipboard(item.id)">
           {{ item.id }}
         </div>
         <div class="item-description">
@@ -23,7 +29,7 @@
         <div class="item-measure-unit">
           {{ item.measureUnit }}
         </div>
-        <div class="btn-container">
+        <div class="end">
           <button class="item-btn left" (click)="openEditItemPage(item.id)">
             <fa-icon [icon]="faPenToSquare"></fa-icon>
           </button>

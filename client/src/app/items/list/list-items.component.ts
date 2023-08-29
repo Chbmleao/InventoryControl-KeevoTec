@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { Observable } from 'rxjs';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +21,7 @@ export class ListItemsComponent implements OnInit {
 
   items$: Observable<Item[]>;
 
-  constructor(private itemService: ItemService) {}
+  constructor(private itemService: ItemService, private clipboard: Clipboard) {}
 
   ngOnInit(): void {
     this.items$ = this.getAll();
@@ -28,18 +29,6 @@ export class ListItemsComponent implements OnInit {
 
   getAll(): Observable<Item[]> {
     return this.itemService.getAllItems();
-  }
-
-  closeItemPages(): void {
-    this.showInsertItemPage = false;
-    this.showEditItemPage = false;
-
-    this.items$ = this.getAll();
-  }
-
-  openEditItemPage(itemId: string) {
-    this.showEditItemPage = true;
-    this.editItemId = itemId;
   }
 
   remove($event: any, item: Item): void {
@@ -56,5 +45,21 @@ export class ListItemsComponent implements OnInit {
         }
       );
     }
+  }
+
+  closeItemPages(): void {
+    this.showInsertItemPage = false;
+    this.showEditItemPage = false;
+
+    this.items$ = this.getAll();
+  }
+
+  openEditItemPage(itemId: string) {
+    this.showEditItemPage = true;
+    this.editItemId = itemId;
+  }
+
+  copyToClipboard(text: string) {
+    this.clipboard.copy(text);
   }
 }
