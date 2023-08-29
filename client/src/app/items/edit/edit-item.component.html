@@ -16,7 +16,7 @@
             name="description"
             [(ngModel)]="item.description"
             #description="ngModel"
-            minlength="5"
+            minlength="3"
             required
           />
           <div
@@ -29,7 +29,7 @@
               Digite a descrição.
             </div>
             <div [hidden]="!description.errors.minlength">
-              A descrição deve conter ao menos 5 caracteres.
+              A descrição deve conter ao menos 3 caracteres.
             </div>
           </div>
         </div>
@@ -59,15 +59,25 @@
 
         <div class="input-group">
           <label for="measureUnit">Unidade de medida</label>
-          <input
-            type="text"
+          <select
             class="form-control"
             id="measureUnit"
             name="measureUnit"
             [(ngModel)]="item.measureUnit"
             #measureUnit="ngModel"
+            minlength="1"
             required
-          />
+          >
+            <option value="">Selecione uma unidade</option>
+            <option value="Unidade">Unidade</option>
+            <option value="Kilograma">Kilograma</option>
+            <option value="Grama">Grama</option>
+            <option value="Litro">Litro</option>
+            <option value="Metro cúbico">Metro cúbico</option>
+            <option value="Metro quadrado">Metro quadrado</option>
+            <option value="Unidade">Metro</option>
+          </select>
+
           <div
             *ngIf="
               measureUnit.errors && (measureUnit.dirty || measureUnit.touched)
@@ -75,7 +85,7 @@
             class="alert"
           >
             <div [hidden]="!measureUnit.errors.required">
-              Digite a unidade de medida.
+              Escolha a unidade de medida.
             </div>
           </div>
         </div>

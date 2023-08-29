@@ -43,7 +43,8 @@
   margin-top: 1.5rem;
 }
 
-.input-group input {
+.input-group input,
+.input-group select {
   margin-top: 0.5rem;
   padding: 10px 20px;
   border: 1px solid #ccc;
