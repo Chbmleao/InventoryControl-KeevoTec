@@ -36,6 +36,7 @@ export class EditItemComponent implements OnInit {
   }
 
   edit(): void {
+    this.item.id = this.editItemId;
     if (this.formItem.form.valid) {
       this.itemService.update(this.item).subscribe(
         () => {
