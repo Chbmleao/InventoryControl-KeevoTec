@@ -54,20 +54,17 @@
   font-weight: 600;
 }
 
-.item-id-container {
-  position: relative;
-}
-
 .copied-notification {
+  display: inline-block;
   position: absolute;
   top: -100%;
-  left: 45%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: purple;
   color: white;
   padding: 4px 10px;
   border-radius: 20px;
-  font-size: 0.8em;
+  font-size: 1em;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -77,6 +74,8 @@
 }
 
 .item-id {
+  display: inline-block;
+  position: relative;
   color: gray;
   font-weight: 300;
   font-size: 0.8em;
