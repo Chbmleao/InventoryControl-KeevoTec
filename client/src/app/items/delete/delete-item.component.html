@@ -1,1 +1,20 @@
-<p>delete-item works!</p>
+<div class="delete-page">
+  <div class="popup-header">
+    <fa-icon class="icon fa-9x" [icon]="faTrash"></fa-icon>
+  </div>
+
+  <div class="popup-footer">
+    <div class="popup-text">
+      <h1>Excluir Item</h1>
+      <h3>
+        Você tem certeza que quer excluir o item de descrição "{{
+          item.description
+        }}" e indentificador que termina em "{{ getEndOfString(item.id) }}"?
+      </h3>
+    </div>
+    <div class="form-buttons">
+      <a class="btn btn-default" (click)="closePage()">Cancelar</a>
+      <a class="btn btn-success" (click)="remove()">Excluir</a>
+    </div>
+  </div>
+</div>

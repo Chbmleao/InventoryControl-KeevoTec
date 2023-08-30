@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { Observable } from 'rxjs';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { ItemService, Item } from '../shared';
 
@@ -17,7 +16,9 @@ export class ListItemsComponent implements OnInit {
 
   showInsertItemPage = false;
   showEditItemPage = false;
+  showDeleteItemPage = false;
   editItemId = '';
+  deleteItem = new Item('', '', 0, '');
   copiedItemId: string | null = null;
 
   items$: Observable<Item[]>;
@@ -51,6 +52,7 @@ export class ListItemsComponent implements OnInit {
   closeItemPages(): void {
     this.showInsertItemPage = false;
     this.showEditItemPage = false;
+    this.showDeleteItemPage = false;
 
     this.items$ = this.getAll();
   }
@@ -58,6 +60,11 @@ export class ListItemsComponent implements OnInit {
   openEditItemPage(itemId: string) {
     this.showEditItemPage = true;
     this.editItemId = itemId;
+  }
+
+  openDeleteItemPage(item: Item) {
+    this.showDeleteItemPage = true;
+    this.deleteItem = item;
   }
 
   copyToClipboard(text: string) {

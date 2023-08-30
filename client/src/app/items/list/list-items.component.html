@@ -41,7 +41,7 @@
           <button class="item-btn left" (click)="openEditItemPage(item.id)">
             <fa-icon [icon]="faPenToSquare"></fa-icon>
           </button>
-          <button class="item-btn right" (click)="remove($event, item)">
+          <button class="item-btn right" (click)="openDeleteItemPage(item)">
             <fa-icon [icon]="faTrash"></fa-icon>
           </button>
         </div>
@@ -56,5 +56,10 @@
       (closePageEvent)="closeItemPages()"
       [editItemId]="editItemId"
     ></app-edit-item>
+    <app-delete-item
+      *ngIf="showDeleteItemPage"
+      (closePageEvent)="closeItemPages()"
+      [item]="deleteItem"
+    ></app-delete-item>
   </div>
 </div>

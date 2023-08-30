@@ -1,0 +1,90 @@
+.delete-page {
+  width: 25vw;
+  height: 60vh;
+  border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.popup-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: calc(50% - 4rem);
+  width: calc(100% - 4rem);
+  padding: 2rem 2rem;
+  background-color: #ff5a5a;
+}
+
+.popup-footer {
+  height: calc(50% - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 2rem;
+}
+
+.popup-footer .popup-text {
+  margin: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-footer h1 {
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
+
+.popup-footer h3 {
+  font-size: 1em;
+}
+
+.form-buttons {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.btn {
+  cursor: pointer;
+  width: 100%;
+  border: black 1px solid;
+  border-radius: 10px;
+  font-size: 1.3em;
+  padding: 0.7rem 0;
+  margin: 0;
+  transition: all 0.5s ease;
+}
+
+.btn:hover {
+  color: white;
+  background-color: black;
+}
+
+.btn-success {
+  border: 0;
+  color: black;
+  background-color: #ff5a5a;
+}
+
+.btn-success:hover {
+  color: #ff5a5a;
+  background-color: black;
+}
+
+.btn-success:disabled {
+  cursor: not-allowed;
+  background-color: #cccccc;
+  color: #666666;
+}
