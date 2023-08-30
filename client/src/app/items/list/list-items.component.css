@@ -17,6 +17,15 @@
   padding: 3rem 0;
 }
 
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #30044c;
+  color: white;
+}
+
 .end {
   display: flex;
   align-items: center;
