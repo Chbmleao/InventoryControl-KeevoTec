@@ -16,6 +16,8 @@ import { ItemService, Item } from '../shared';
 })
 export class InsertItemComponent implements OnInit {
   @Output() closePageEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() closePageAndReloadEvent: EventEmitter<void> =
+    new EventEmitter<void>();
 
   @ViewChild('formItem', { static: true }) formItem: NgForm;
   item: Item;
@@ -31,7 +33,7 @@ export class InsertItemComponent implements OnInit {
       this.itemService.insert(this.item).subscribe(
         () => {
           console.log('Item inserted successfully');
-          this.closePage();
+          this.closePage(true);
         },
         (error) => {
           console.error('Error inserting item:', error);
@@ -40,7 +42,11 @@ export class InsertItemComponent implements OnInit {
     }
   }
 
-  closePage(): void {
-    this.closePageEvent.emit();
+  closePage(reload: boolean): void {
+    if (reload) {
+      this.closePageAndReloadEvent.emit();
+    } else {
+      this.closePageEvent.emit();
+    }
   }
 }

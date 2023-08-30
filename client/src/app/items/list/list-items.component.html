@@ -49,16 +49,19 @@
     </div>
     <app-insert-item
       *ngIf="showInsertItemPage"
-      (closePageEvent)="closeItemPages()"
+      (closePageEvent)="closeItemPages(false)"
+      (closePageAndReloadEvent)="closeItemPages(true)"
     ></app-insert-item>
     <app-edit-item
       *ngIf="showEditItemPage"
-      (closePageEvent)="closeItemPages()"
+      (closePageEvent)="closeItemPages(false)"
+      (closePageAndReloadEvent)="closeItemPages(true)"
       [editItemId]="editItemId"
     ></app-edit-item>
     <app-delete-item
       *ngIf="showDeleteItemPage"
-      (closePageEvent)="closeItemPages()"
+      (closePageEvent)="closeItemPages(false)"
+      (closePageAndReloadEvent)="closeItemPages(true)"
       [item]="deleteItem"
     ></app-delete-item>
   </div>

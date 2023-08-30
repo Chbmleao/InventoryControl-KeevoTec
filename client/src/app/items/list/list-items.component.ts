@@ -33,41 +33,27 @@ export class ListItemsComponent implements OnInit {
     return this.itemService.getAllItems();
   }
 
-  remove($event: any, item: Item): void {
-    $event.preventDefault();
-
-    if (confirm('Do you want to remove "' + item.description + '" item?')) {
-      this.itemService.delete(item.id).subscribe(
-        () => {
-          console.log('Item deleted successfully');
-          this.items$ = this.getAll();
-        },
-        (error) => {
-          console.error('Error deleting item:', error);
-        }
-      );
-    }
-  }
-
-  closeItemPages(): void {
+  closeItemPages(reload: boolean): void {
     this.showInsertItemPage = false;
     this.showEditItemPage = false;
     this.showDeleteItemPage = false;
 
-    this.items$ = this.getAll();
+    if (reload) {
+      this.items$ = this.getAll();
+    }
   }
 
-  openEditItemPage(itemId: string) {
+  openEditItemPage(itemId: string): void {
     this.showEditItemPage = true;
     this.editItemId = itemId;
   }
 
-  openDeleteItemPage(item: Item) {
+  openDeleteItemPage(item: Item): void {
     this.showDeleteItemPage = true;
     this.deleteItem = item;
   }
 
-  copyToClipboard(text: string) {
+  copyToClipboard(text: string): void {
     this.clipboard.copy(text);
 
     this.copiedItemId = text;

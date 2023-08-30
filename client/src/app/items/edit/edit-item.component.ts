@@ -20,6 +20,8 @@ export class EditItemComponent implements OnInit {
   @ViewChild('formItem') formItem: NgForm;
   @Input() editItemId: string;
   @Output() closePageEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() closePageAndReloadEvent: EventEmitter<void> =
+    new EventEmitter<void>();
 
   item: Item;
 
@@ -41,7 +43,7 @@ export class EditItemComponent implements OnInit {
       this.itemService.update(this.item).subscribe(
         () => {
           console.log('Item updated successfully');
-          this.closePage();
+          this.closePage(true);
         },
         (error) => {
           console.error('Error updating item:', error);
@@ -50,8 +52,12 @@ export class EditItemComponent implements OnInit {
     }
   }
 
-  closePage(): void {
-    this.closePageEvent.emit();
+  closePage(reload: boolean): void {
+    if (reload) {
+      this.closePageAndReloadEvent.emit();
+    } else {
+      this.closePageEvent.emit();
+    }
   }
 
   private updateItem(): void {

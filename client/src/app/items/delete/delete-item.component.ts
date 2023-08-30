@@ -11,6 +11,8 @@ import { Item, ItemService } from '../shared';
 export class DeleteItemComponent {
   @Input() item: Item;
   @Output() closePageEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() closePageAndReloadEvent: EventEmitter<void> =
+    new EventEmitter<void>();
 
   faTrash = faTrash;
 
@@ -20,7 +22,7 @@ export class DeleteItemComponent {
     this.itemService.delete(this.item.id).subscribe(
       () => {
         console.log('Item deleted successfully');
-        this.closePage();
+        this.closePage(true);
       },
       (error) => {
         console.error('Error deleting item:', error);
@@ -28,8 +30,12 @@ export class DeleteItemComponent {
     );
   }
 
-  closePage(): void {
-    this.closePageEvent.emit();
+  closePage(reload: boolean): void {
+    if (reload) {
+      this.closePageAndReloadEvent.emit();
+    } else {
+      this.closePageEvent.emit();
+    }
   }
 
   getEndOfString(str: string): string {
