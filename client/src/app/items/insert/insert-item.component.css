@@ -99,3 +99,25 @@
   background-color: #cccccc;
   color: #666666;
 }
+
+@media screen and (max-width: 800px) {
+  .insert-page {
+    width: 60vw;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .insert-page {
+    width: 60vw;
+  }
+
+  .title-container {
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .title-container img {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+}
