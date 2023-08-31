@@ -1,6 +1,6 @@
 .delete-page {
   width: 25vw;
-  height: 60vh;
+  height: auto;
   border-radius: 20px;
   position: fixed;
   top: 50%;
@@ -87,4 +87,24 @@
   cursor: not-allowed;
   background-color: #cccccc;
   color: #666666;
+}
+
+@media screen and (max-width: 1200px) {
+  .delete-page {
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .delete-page {
+    width: 70vw;
+  }
+
+  .popup-footer {
+    padding: 1rem 1rem;
+  }
+
+  .popup-footer .popup-text {
+    margin: 0;
+  }
 }
