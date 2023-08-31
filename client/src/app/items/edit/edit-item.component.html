@@ -35,29 +35,6 @@
         </div>
 
         <div class="input-group">
-          <label for="quantity">Quantidade</label>
-          <input
-            type="number"
-            class="form-control"
-            id="quantity"
-            name="quantity"
-            [(ngModel)]="item.quantity"
-            #quantity="ngModel"
-            min="0"
-            required
-          />
-          <div
-            *ngIf="quantity.errors && (quantity.dirty || quantity.touched)"
-            class="alert"
-          >
-            <div [hidden]="!quantity.errors.required">Digite a quantidade.</div>
-            <div [hidden]="!quantity.errors.min">
-              A quantidade deve ser maior ou igual a 0.
-            </div>
-          </div>
-        </div>
-
-        <div class="input-group">
           <label for="measureUnit">Unidade de medida</label>
           <select
             class="form-control"
@@ -86,6 +63,29 @@
           >
             <div [hidden]="!measureUnit.errors.required">
               Escolha a unidade de medida.
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="quantity">Quantidade</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            [(ngModel)]="item.quantity"
+            #quantity="ngModel"
+            min="0"
+            required
+          />
+          <div
+            *ngIf="quantity.errors && (quantity.dirty || quantity.touched)"
+            class="alert"
+          >
+            <div [hidden]="!quantity.errors.required">Digite a quantidade.</div>
+            <div [hidden]="!quantity.errors.min">
+              A quantidade deve ser maior ou igual a 0.
             </div>
           </div>
         </div>
