@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { Observable } from 'rxjs';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPenToSquare,
+  faTrash,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { ItemService, Item } from '../shared';
 
@@ -13,6 +17,7 @@ import { ItemService, Item } from '../shared';
 export class ListItemsComponent implements OnInit {
   faPenToSquare = faPenToSquare;
   faTrash = faTrash;
+  faPlus = faPlus;
 
   showInsertItemPage = false;
   showEditItemPage = false;
@@ -60,5 +65,16 @@ export class ListItemsComponent implements OnInit {
     setTimeout(() => {
       this.copiedItemId = null;
     }, 3000);
+  }
+
+  divideInHalf(text: string) {
+    const half = Math.floor(text.length / 2);
+    const firstPart = text.slice(0, half);
+    const secondPart = text.slice(half);
+
+    return {
+      firstPart,
+      secondPart,
+    };
   }
 }

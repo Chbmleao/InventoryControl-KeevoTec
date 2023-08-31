@@ -13,12 +13,20 @@
         <div>Quantidade</div>
         <div>Unidade de medida</div>
         <div class="end">
-          <a class="btn" (click)="this.showInsertItemPage = true"> Novo </a>
+          <button
+            class="item-btn plus"
+            (click)="this.showInsertItemPage = true"
+          >
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </button>
         </div>
       </div>
       <div *ngFor="let item of items$ | async" class="content-bar">
         <div>
-          <div class="item-id" (click)="copyToClipboard(item.id)">
+          <div
+            class="item-attribute item-id"
+            (click)="copyToClipboard(item.id)"
+          >
             <div
               class="copied-notification"
               [ngClass]="{ visible: copiedItemId === item.id }"
@@ -28,13 +36,13 @@
             {{ item.id }}
           </div>
         </div>
-        <div class="item-description">
+        <div class="item-attribute item-description">
           {{ item.description }}
         </div>
-        <div class="item-quantity">
+        <div class="item-attribute item-quantity">
           {{ item.quantity }}
         </div>
-        <div class="item-measure-unit">
+        <div class="item-attribute item-measure-unit">
           {{ item.measureUnit }}
         </div>
         <div class="end">
