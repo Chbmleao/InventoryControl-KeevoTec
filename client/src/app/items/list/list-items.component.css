@@ -89,6 +89,7 @@
 
 .item-id {
   display: inline-block;
+  word-break: break-all;
   position: relative;
   color: gray;
   font-weight: 300;
@@ -143,11 +144,6 @@
 }
 
 @media screen and (max-width: 1040px) {
-  .item-id {
-    word-break: break-all;
-    max-width: 100px;
-  }
-
   .copied-notification {
     word-break: normal;
   }
