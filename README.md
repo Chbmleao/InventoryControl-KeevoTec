@@ -18,3 +18,18 @@ The Inventory Control System is a robust application designed to streamline the 
 - **Docker Container:** Runs MongoDB within a Docker container, providing a consistent and isolated environment.
 - **Backend (Node.js, TypeScript):** Utilizes TypeScript and Node.js to provide a reliable and performant server.
 - **Frontend (Angular):** The Angular frontend offers an intuitive and user-friendly interface for interacting with the inventory.
+
+## Architecture
+
+The Inventory Control System employs a well-structured architecture:
+
+### Backend (Node.js, TypeScript):
+
+- **Controllers:** Handle incoming HTTP requests and manage the flow of data between the frontend and the database.
+- **Repositories:** Interact with the database, abstracting complex database operations to ensure data integrity.
+  Routes: Define API endpoints, specifying which controller methods to invoke for each endpoint.
+
+## Frontend (Angular):
+
+- **User Interface:** Provides a clean and intuitive interface for managing inventory items.
+- **API Integration:** Communicates with the backend API to perform CRUD (Create, Read, Update, Delete) operations on inventory items.
