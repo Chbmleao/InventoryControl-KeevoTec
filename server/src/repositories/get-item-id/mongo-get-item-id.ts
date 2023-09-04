@@ -1,20 +1,16 @@
 import { ObjectId } from "mongodb";
 
 import { IGetItemByIdRepository } from "../../controllers/get-item-id/protocols";
-import { MongoClient } from "../../database/mongo";
-import { Item } from "../../models/item";
-import { MongoItem } from "../mongo-protocols";
+import Item, { Item as ItemInterface } from "../../models/item";
 
 export class MongoGetItemByIdRepository implements IGetItemByIdRepository {
-  async getItemById(itemId: string): Promise<Item> {
+  async getItemById(itemId: string): Promise<ItemInterface> {
     const objectId = new ObjectId(itemId);
 
-    const item = await MongoClient.db
-      .collection<MongoItem>("items")
-      .findOne({ _id: objectId });
+    const item = await Item.findById(objectId).lean();
 
     if (!item) {
-      throw new Error("Item not created");
+      throw new Error("Item not found");
     }
 
     const { _id, ...rest } = item;

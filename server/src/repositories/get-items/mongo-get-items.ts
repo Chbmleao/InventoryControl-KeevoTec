@@ -1,18 +1,19 @@
 import { IGetItemsRepository } from "../../controllers/get-items/protocols";
-import { MongoClient } from "../../database/mongo";
-import { Item } from "../../models/item";
-import { MongoItem } from "../mongo-protocols";
+import Item, { Item as ItemInterface } from "../../models/item";
 
 export class MongoGetItemsRepository implements IGetItemsRepository {
-  async getItems(): Promise<Item[]> {
-    const items = await MongoClient.db
-      .collection<MongoItem>("items")
-      .find({})
-      .toArray();
+  async getItems(): Promise<ItemInterface[]> {
+    const items = await Item.find({}).lean();
 
-    return items.map(({ _id, ...rest }) => ({
-      ...rest,
-      id: _id.toHexString(),
-    }));
+    if (!items) {
+      return [];
+    }
+
+    const mappedItems = items.map((item) => {
+      const { _id, ...rest } = item;
+      return { id: _id.toHexString(), ...rest };
+    });
+
+    return mappedItems;
   }
 }

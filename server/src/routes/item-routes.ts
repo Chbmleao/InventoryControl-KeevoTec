@@ -8,7 +8,7 @@ import { MongoCreateItemRepository } from "../repositories/create-item/mongo-cre
 import { CreateItemController } from "../controllers/create-item/create-item";
 import { MongoUpdateItemRepository } from "../repositories/update-item/mongo-update-item";
 import { UpdateItemController } from "../controllers/update-item/update-item";
-import { MongoDeleteItemRepository } from "../repositories/delete-item/mongo-delete-user";
+import { MongoDeleteItemRepository } from "../repositories/delete-item/mongo-delete-item";
 import { DeleteItemController } from "../controllers/delete-item/delete-item";
 
 const itemRoutes = (app: express.Application) => {

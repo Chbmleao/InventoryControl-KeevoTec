@@ -2,26 +2,24 @@ import {
   CreateItemParams,
   ICreateItemRepository,
 } from "../../controllers/create-item/protocols";
-import { MongoClient } from "../../database/mongo";
-import { Item } from "../../models/item";
-import { MongoItem } from "../mongo-protocols";
+import Item, { Item as ItemInterface } from "../../models/item";
 
 export class MongoCreateItemRepository implements ICreateItemRepository {
-  async createItem(params: CreateItemParams): Promise<Item> {
-    const { insertedId } = await MongoClient.db
-      .collection("items")
-      .insertOne(params);
+  async createItem(params: CreateItemParams): Promise<ItemInterface> {
+    try {
+      const newItem = new Item({
+        description: params.description,
+        quantity: params.quantity,
+        measureUnit: params.measureUnit,
+      });
 
-    const item = await MongoClient.db
-      .collection<MongoItem>("items")
-      .findOne({ _id: insertedId });
+      const savedItem = await newItem.save();
 
-    if (!item) {
+      const mappedItem = savedItem as ItemInterface;
+
+      return mappedItem;
+    } catch (error) {
       throw new Error("Item not created");
     }
-
-    const { _id, ...rest } = item;
-
-    return { id: _id.toHexString(), ...rest };
   }
 }

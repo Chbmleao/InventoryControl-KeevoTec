@@ -3,30 +3,26 @@ import {
   IUpdateItemRepository,
   UpdateItemParams,
 } from "../../controllers/update-item/protocols";
-import { MongoClient } from "../../database/mongo";
-import { Item } from "../../models/item";
-import { MongoItem } from "../mongo-protocols";
+import Item, { Item as ItemInterface } from "../../models/item";
 
 export class MongoUpdateItemRepository implements IUpdateItemRepository {
-  async updateItem(id: string, params: UpdateItemParams): Promise<Item> {
-    await MongoClient.db.collection("items").updateOne(
-      { _id: new ObjectId(id) },
-      {
-        $set: {
-          ...params,
-        },
-      }
-    );
+  async updateItem(
+    id: string,
+    params: UpdateItemParams
+  ): Promise<ItemInterface> {
+    const objectId = new ObjectId(id);
 
-    const item = await MongoClient.db
-      .collection<MongoItem>("items")
-      .findOne({ _id: new ObjectId(id) });
+    const updatedItem = await Item.findByIdAndUpdate(
+      objectId,
+      { $set: params },
+      { new: true }
+    ).lean();
 
-    if (!item) {
+    if (!updatedItem) {
       throw new Error("Item not updated");
     }
 
-    const { _id, ...rest } = item;
+    const { _id, ...rest } = updatedItem;
 
     return { id: _id.toHexString(), ...rest };
   }

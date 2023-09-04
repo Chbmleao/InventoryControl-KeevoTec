@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { config } from "dotenv";
 
-import { MongoClient } from "./database/mongo";
+import connectDB from "./database/database";
 import itemRoutes from "./routes";
 
 const main = async () => {
@@ -13,12 +13,17 @@ const main = async () => {
   app.use(cors());
   app.use(express.json());
 
-  await MongoClient.connect();
-
   itemRoutes(app);
 
-  const port = process.env.PORT || 8000;
-  app.listen(port, () => console.log(`Listening on port ${port}!`));
+  try {
+    await connectDB();
+
+    const port = process.env.PORT || 8000;
+    app.listen(port, () => console.log(`Listening on port ${port}!`));
+  } catch (error) {
+    console.error("Error starting the server:", error);
+    process.exit(1);
+  }
 };
 
 main();
